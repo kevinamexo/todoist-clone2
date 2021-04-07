@@ -1,0 +1,128 @@
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+input :focus {
+  outline-offset: -2px;
+}
+
+.navbar {
+  height: 44px;
+  width: 100vw;
+  background-color: #db4c3f;
+  padding-left: 42px;
+  padding-right: 42px;
+}
+.navbar-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* padding-right: 42px; */
+}
+
+.navbar__section1,
+.navbar__section2 {
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.navbar__section1-icon,
+.navbar__section2-icon,
+.navbar__section2-icon-profile {
+  color: #fff;
+  cursor: pointer;
+  margin: 0 4px;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  min-width: 26px;
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.navbar__section2 li {
+  cursor: pointer;
+}
+
+.navbar__section1-icon:hover,
+.navbar__section2-icon:hover {
+  background-color: #e25b4e;
+}
+
+.navbar__section2-icon {
+  margin: 0 5px;
+}
+
+.navbar__section2-icon-profile {
+  font-size: 1.6em;
+  color: #fff;
+}
+
+.navbar__section1-search {
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-color: #e25b4e;
+  color: #fff;
+  align-items: center;
+  display: flex;
+  margin-left: 5px;
+}
+
+.navbar__section1-search:hover,
+.navbar__section1-search:active,
+.navbar__section1-search:focus {
+  color: black;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  color: black;
+  border-radius: 3px;
+
+  z-index: 55;
+  /* height: 1.2em; */
+}
+
+.navbar__section1-search span {
+  font-size: 24px;
+}
+.navbar__section1-search input {
+  margin-left: 10px;
+  background: inherit;
+  border: none;
+  font-size: 1em;
+  height: 100%;
+  margin: 0 2px;
+}
+
+.navbar__section1-search input:focus,
+.navbar__section1-search input:active,
+.navbar__section1-search input:hover {
+  color: black;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  background-color: #fff;
+  color: black;
+  height: 100%;
+  z-index: 55;
+}
+
+.hidden {
+  display: none;
+}
+.search-icon {
+  display: flex;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+}
