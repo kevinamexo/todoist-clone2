@@ -1,0 +1,17 @@
+.project-overlay-container {
+  width: calc(100vw - 305px);
+  padding: 10px;
+  background-color: rgb(49, 15, 141);
+  position: absolute;
+  left: 305px;
+  height: 100vh;
+  color: black;
+  z-index: 1000;
+  padding-top: 36px;
+  padding-left: 55px;
+  padding-right: 55px;
+}
+
+.p-o-container {
+  color: black;
+}

@@ -5,5 +5,23 @@ import{
 
 } from './openSidebarContext'
 
+import {
+    SelectedProjectProvider,
+    SelectedProjectContext,
+    useSelectedProjectValue
 
-export {useOpenSidebarValue, OpenSidebarProvider,OpenSidebarContext}
+} from './selected-project-context'
+
+
+import {
+    useProjectsValue
+    
+} from './projects-context'
+export {useOpenSidebarValue, 
+    OpenSidebarProvider,
+    OpenSidebarContext,
+    SelectedProjectContext,
+    SelectedProjectProvider,
+    useSelectedProjectValue,
+    useProjectsValue
+}

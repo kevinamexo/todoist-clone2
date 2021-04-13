@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from 'react'
-
 import {FaBars} from 'react-icons/fa'
 import {AiOutlineMenu, AiOutlinePlus, AiOutlineSearch} from 'react-icons/ai'
 import {CgHome, CgProfile} from 'react-icons/cg'
@@ -39,7 +38,7 @@ function Navbar() {
                         data-testid="navbar-menu-bars"
                         onClick={()=>{
                             setOpenSidebar(!openSidebar)
-                                console.log(openSidebar)
+                            
                             }
                             
                         }
@@ -51,7 +50,7 @@ function Navbar() {
         
                     <div
                         role="button"  
-                        className="navbar__section1-search"
+                        className={openSidebar? "hidden":"navbar__section1-search"}
                         onFocus={()=>setSearchFocus(true)}
                     >
                         <span className={searchFocus?"hidden": "search-icon"}>
@@ -63,9 +62,7 @@ function Navbar() {
                             className={searchFocus? "navbar__section1-searchInput-white":"navbar__section1-searchInput"}
                             data-testid="navbar-search"
                             placeholder="Find"
-                            
-                            
-
+                                                    
                             
                         />
                     </div>

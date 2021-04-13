@@ -8,3 +8,8 @@
   width: 100%;
   overflow: hidden;
 }
+.main-content {
+  width: 100vw;
+  height: calc(100vh - 44px);
+  position: relative;
+}
