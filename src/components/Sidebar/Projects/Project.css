@@ -1,0 +1,106 @@
+.sidebar__individual-project {
+  display: flex;
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar__individual-project:hover,
+.sidebar__individual-project:focus,
+.sidebar__individual-project:active {
+  background-color: rgb(216, 213, 213);
+  border: none;
+  outline: none;
+}
+.project__dot-container {
+  justify-content: center;
+}
+
+.project-dot {
+  border-radius: 80%;
+  background-color: rgb(248, 62, 62);
+  height: 10px;
+  width: 10px;
+}
+
+.project__dot-container,
+.sidebar__project-delete-span,
+.sidebar__project-name {
+  align-items: center;
+  display: flex;
+}
+
+.sidebar__project-delete-span {
+  justify-content: center;
+  align-items: center;
+  color: rgb(133, 131, 131);
+  font-size: 14px;
+  overflow: visible;
+  width: 20%;
+  right: 0px;
+}
+
+.delete-modal {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 250px;
+  height: 140px;
+  background-color: #fff;
+  z-index: 5000;
+  /* border: 1px solid black; */
+
+  border-radius: 10px;
+  /* overflow: visible; */
+
+  display: flex;
+  flex-direction: column;
+}
+.delete-modal p {
+  height: 60%;
+  border-bottom: 1px solid rgb(143, 143, 143);
+  padding: 20px;
+  font-size: 14px;
+  /* font-weight: bold; */
+}
+.delete-modal-buttons {
+  height: 40%;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20px;
+  padding: 20px;
+}
+.delete-modal-buttons button {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 12px 7px !important;
+}
+.delete-modal-buttons :nth-child(1) {
+  margin-right: 5px;
+  background-color: rgb(232, 232, 232);
+  color: black;
+}
+.delete-modal-buttons :nth-child(2) {
+  background-color: #db4c3f;
+  padding: 6px 12px 7px !important;
+  color: #fff;
+}
+
+.sidebar__project-delete-span:hover {
+  color: black;
+}
+
+.sidebar__project-name {
+  font-size: 14px;
+  width: 80%;
+  display: flex;
+  margin-left: 20px;
+}

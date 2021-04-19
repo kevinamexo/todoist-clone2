@@ -1,0 +1,9 @@
+.sidebar__project {
+  overflow: visible;
+}
+
+.sidebar__project:focus,
+.sidebar__project:active {
+  outline: none;
+  border: none;
+}

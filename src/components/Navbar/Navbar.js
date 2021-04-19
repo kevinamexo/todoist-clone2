@@ -37,6 +37,7 @@ function Navbar() {
                     <li className="navbar__section1-icon"
                         data-testid="navbar-menu-bars"
                         onClick={()=>{
+                            
                             setOpenSidebar(!openSidebar)
                             
                             }

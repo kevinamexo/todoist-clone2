@@ -1,12 +1,12 @@
 .project-overlay-container {
   width: calc(100vw - 305px);
   padding: 10px;
-  background-color: rgb(49, 15, 141);
+  background-color: rgb(133, 132, 136);
   position: absolute;
   left: 305px;
   height: 100vh;
   color: black;
-  z-index: 1000;
+  z-index: 20;
   padding-top: 36px;
   padding-left: 55px;
   padding-right: 55px;

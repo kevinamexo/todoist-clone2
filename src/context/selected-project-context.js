@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState} from 'react'
-import {useProjects} from '../firebase-hooks'
+
 
 
 export const SelectedProjectContext = createContext()

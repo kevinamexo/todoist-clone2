@@ -4,15 +4,15 @@ import {VscInbox} from 'react-icons/vsc'
 import {IoTodayOutline, IoCalendarOutline} from 'react-icons/io5'
 import {useOpenSidebarValue,} from '../../context'
 import {AiOutlneArrowRight, AiOutlineDown, AiOutlineRight,AiOutlinePlus} from 'react-icons/ai'
-import Projects from './Projects/Project'
-function Sidebar() {
+import Projects from './Projects/Projects'
+import {useSelectedProjectValue} from '../../context'
+const Sidebar=()=> {
 
-    const  [openProjects, setOpenProjects]=useState(false)
-    const  [openLabels, setOpenLabels]= useState(false)
+    const [openProjects, setOpenProjects]=useState(false)
+    const [openLabels, setOpenLabels]= useState(false)
     const [openFilters, setOpenFilters]= useState(false)
     const [active,setActive]= useState('inbox')
     const {openSidebar} = useOpenSidebarValue()
-    
     
     const handleOpenProjects=()=>setOpenProjects(!openProjects)
     const handleOpenLabels=()=>setOpenLabels(!openLabels)
@@ -21,7 +21,7 @@ function Sidebar() {
 
 
     
-    console.log(openSidebar)
+    // console.log(openSidebar)
     return (
         <div className={`sidebar ${openSidebar ?"show":"hidden-sidebar"}`}>
             <ul className="sidebar__times">
@@ -50,22 +50,40 @@ function Sidebar() {
 
             <div className="sidebar__options">
                 <div className="sidebar-projects">
-                    <span className="open-icon"
-                        onClick={handleOpenProjects}
-                    >
-                        {openProjects?<AiOutlineDown/>: <AiOutlineRight/>}
-                    </span>
-                    <span className="sidebar__option-label">
-                        Projects
-                    </span>
+                    <div className="sidebar-projects-icons">
+                        <span className="open-icon"
+                            onClick={handleOpenProjects}
+                        >
+                            {openProjects?<AiOutlineDown/>: <AiOutlineRight/>}
+                        </span>
+                        <span className="sidebar__option-label">
+                            Projects    
+                        </span>
 
-                    <span className="sidebar__add-project">
-                        <AiOutlinePlus/>
-                    </span>
 
-                    <ul></ul>
+                        <span className="sidebar__add-project">
+                            <AiOutlinePlus/>
+                        </span>
+                    </div>
+
+                    {openProjects && (
+                        <ul className="projects">
+                            <Projects/>
+                        </ul>
+                        )
+                    }
+                    
+                    
+
+                
                 </div>
-                <div className="sidebar-projects">
+
+
+
+
+
+
+                <div className="sidebar-labels">
                     <span className="open-icon"
                         onClick={handleOpenLabels}
                     >
@@ -95,15 +113,16 @@ function Sidebar() {
                         <AiOutlinePlus/>
                     </span>
 
-                    <ul>
-                        <Projects/>
-                    </ul>
+                   
                 </div>
-
                 
-
+            
+            
             </div>
-           
+
+            
+
+          
             
         </div>
     )

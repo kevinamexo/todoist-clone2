@@ -12,16 +12,22 @@ import {
 
 } from './selected-project-context'
 
-
 import {
-    useProjectsValue
-    
+    ProjectsContextProvider,
+    ProjectsContext,
+    useProjectsValue,
+
 } from './projects-context'
+
+
 export {useOpenSidebarValue, 
     OpenSidebarProvider,
     OpenSidebarContext,
     SelectedProjectContext,
     SelectedProjectProvider,
     useSelectedProjectValue,
-    useProjectsValue
+    useProjectsValue,
+    ProjectsContext,
+    ProjectsContextProvider
+    
 }

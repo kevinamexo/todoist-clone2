@@ -9,7 +9,7 @@ export const filterByTime=(projects, key)=>{
 }
 
 export const timeFiltersExist= selectedProject=>{
-    timeFilters.find(tasks=> tasks.key===selectedProject)
+    timeFilters.find(tasks=> tasks.key===selectedProject.projectId)
 }
 
 

@@ -1,10 +1,10 @@
 import React, {createContext, useContext} from 'react'
 import {useProjects} from '../firebase-hooks'
-
+ 
 
 export const ProjectsContext= createContext()
 
-export const ProjectsProvider= ({children})=>{
+export const ProjectsContextProvider= ({children})=>{
     const {projects, setProjects}= useProjects()
 
 
