@@ -1,7 +1,7 @@
 .project-overlay-container {
   width: calc(100vw - 305px);
   padding: 10px;
-  background-color: rgb(133, 132, 136);
+  /* background-color: rgb(133, 132, 136); */
   position: absolute;
   left: 305px;
   height: 100vh;
@@ -12,6 +12,51 @@
   padding-right: 55px;
 }
 
-.p-o-container {
+.p-o-header {
+  margin-top: 20px;
   color: black;
+  height: 40px;
+  font-weight: bold;
+  font-size: 1.5em;
+  /* border-bottom: 1px solid rgb(218, 218, 218); */
+}
+
+.pO_task-list {
+  /* background-color: rgb(170, 41, 41); */
+  width: 100%;
+  margin: 15px;
+}
+.project-overlay-task,
+.project-overlay__tasks {
+  width: 100%;
+}
+
+.project-overlay__tasks {
+  display: flex;
+  flex-direction: column;
+}
+.pO-add-task span {
+  display: flex;
+}
+
+.pO-add-task-plus {
+  color: #dd4b39;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.pO-add-task-plus:hover {
+  color: #fff;
+  background-color: #dd4b39;
+  border-radius: 10px;
+}
+
+.pO-add-task:hover .pO-add-task-name {
+  color: #dd4b39;
+}
+
+.pO-add-task-name {
+  color: rgb(72, 72, 72);
+  margin-left: 10px;
+  font-size: 16px;
 }

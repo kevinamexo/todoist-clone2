@@ -1,0 +1,36 @@
+.check-task {
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  /* background-color: darkorchid; */
+}
+
+.pO-task {
+  border-bottom: 1px solid rgb(218, 218, 218);
+  width: 100%;
+  margin-bottom: 25px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.pO-task__taskName {
+  margin-left: 10px;
+}
+
+.pO-task,
+.pO-task__Check,
+.pO-task__taskName {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.pO-task__taskCheck:hover {
+  background-color: rgb(218, 218, 218);
+  border-radius: 10px;
+}
+
+.pO-task__taskCheck {
+  font-size: 1.3em;
+  font-weight: lighter;
+}
