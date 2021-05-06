@@ -61,6 +61,12 @@
 .sidebar-inbox .sidebar-icon {
   color: #246fe0;
 }
+
+.no_tasks {
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+}
 .sidebar-today .sidebar-icon {
   color: #058527;
 }

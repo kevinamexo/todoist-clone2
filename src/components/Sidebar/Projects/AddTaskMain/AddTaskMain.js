@@ -4,9 +4,9 @@ import {MdLabelOutline} from 'react-icons/md'
 import moment from 'moment'
 import './AddTaskMain.css'
 import {firebase} from '../../../../firebase'
-import { useSelectedProjectValue } from '../../../../context'
+import { useSelectedProjectValue} from '../../../../context'
 import { VscInbox } from 'react-icons/vsc'
-
+import {generatePushId} from '../../../../helpers'
 
 
 function AddTaskMain({setShowAddTask}) {
@@ -14,15 +14,23 @@ function AddTaskMain({setShowAddTask}) {
     const [taskDate, setTaskDate]= useState('')
     const [project, setProject]= useState('')
     const {selectedProject}= useSelectedProjectValue()
+    const [dateSet,setDateSet]= useState(false)
+    const [activeDateButton, setActiveDateButton]= useState('')
+    
+
+
     
     const addtask=()=>{
-        const projectId= project||selectedProject
+        let projectId= project||selectedProject
         let filterDate = ''
-        if(projectId === 'TODAY'){
-            filterDate= moment().format('DD/MMY/YYYY')
-        } else{
-            filterDate=""
-        }
+        projectId= selectedProject? selectedProject.projectId: ''
+        
+        
+        // if(projectId === 'TODAY'){
+        //     filterDate= moment().format('DD/MM/YYYY')
+        // } else{
+        //     filterDate=''
+        // }
     
         return(
             task&&
@@ -32,16 +40,18 @@ function AddTaskMain({setShowAddTask}) {
                 .collection('tasks')
                 .add({
                     archived:false,
-                    date: filterDate||taskDate,
-                    task,
+                    date:dateSet? taskDate:filterDate,
                     projectId,
+                    task,
                     userId: '2irjij20349cuu204'
                 })
                 .then(()=>{
+                    console.log('adding')
                     setTask('')
                     setProject('')
                     setShowAddTask(false)
                 })
+
         )
     
     }
@@ -50,6 +60,7 @@ function AddTaskMain({setShowAddTask}) {
 
     return (
         <>
+            <h1>{taskDate}</h1>
             <div className="add-task-main">
                 <input 
                     className="add-task-main__taskName"
@@ -62,11 +73,52 @@ function AddTaskMain({setShowAddTask}) {
                     data-testid="add-task-content"
                 />
                 <div className="atm-timeFilter-icons">
-                    <span className="atm-calendar">
+                    <span className={activeDateButton==='today' ?"atm-calendar active": "atm-calendar"}
+                        role="button"
+                        tabIndex={0}
+                        onClick={()=>{
+                            if(activeDateButton==='today'){
+                                
+                                console.log('clearing button')
+                                setTaskDate('')
+                                setActiveDateButton('')
+                                setDateSet(false)
+                                
+                            } else{
+                                
+                                setTaskDate(moment().format('DD/MM/YYYY'))
+                                console.log(taskDate)
+                                setActiveDateButton('today')
+                                setDateSet(true)
+                               
+                            }      
+                            }
+                        }
+
+                    >
                         <IoIosCalendar/>
                         <p>Today</p>
                     </span>
-                    <span className="atm-inbox">
+                    <span className= {activeDateButton==="inbox" ?"atm-inbox active": "atm-inbox"}
+                        role="button"
+                        tabIndex={0}
+                        onClick={()=>{
+                            if(activeDateButton==='inbox'){
+                                setTaskDate('')
+                                console.log('clearing button')
+                                setActiveDateButton('')
+                                setDateSet(false)
+                            } else{
+                                setTaskDate('')
+                                setActiveDateButton('inbox')
+                                setDateSet(true)
+                               
+                            }      
+                            }
+                        }
+                          
+
+                    >
                         <VscInbox/>
                         <p>Inbox</p>
                     </span>

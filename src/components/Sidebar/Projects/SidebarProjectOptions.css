@@ -25,6 +25,7 @@
   height: 30px;
   /* padding: 10px; */
   z-index: 60;
+  width: 100%;
 }
 
 .sidebar-project-options > li :nth-child(2) {

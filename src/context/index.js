@@ -5,6 +5,11 @@ import{
 
 } from './openSidebarContext'
 
+
+import {
+    useShowAddProjectValue,
+    ShowAddProjectProvider
+} from './showAddProjectContext'
 import {
     SelectedProjectProvider,
     SelectedProjectContext,
@@ -20,6 +25,21 @@ import {
 } from './projects-context'
 
 
+import{
+    useTasksValue,
+    TasksContext,
+    TasksContextProvider
+} from './tasks-context'
+
+ 
+import {
+    LoadingDataContext,
+    LoadingDataContextProvider,
+    useLoadingDataValue
+} from './loadingDataContext'
+
+
+
 export {useOpenSidebarValue, 
     OpenSidebarProvider,
     OpenSidebarContext,
@@ -28,6 +48,14 @@ export {useOpenSidebarValue,
     useSelectedProjectValue,
     useProjectsValue,
     ProjectsContext,
-    ProjectsContextProvider
+    ProjectsContextProvider,
+    useShowAddProjectValue,
+    useTasksValue,
+    TasksContext,
+    TasksContextProvider,
+    LoadingDataContext,
+    LoadingDataContextProvider,
+    useLoadingDataValue
+
     
 }

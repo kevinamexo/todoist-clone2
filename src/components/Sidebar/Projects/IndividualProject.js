@@ -1,10 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {FaTrashAlt} from 'react-icons/fa'
+import {GrCheckmark} from 'react-icons/gr'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
 import {firebase} from '../../../firebase'
 import './Project.css'
 import {useProjectsValue, useSelectedProjectValue} from '../../../context'
 import SidebarProjectOptions from './SidebarProjectOptions'
+
 
 export const IndividualProject= ({project})=> {
 
@@ -72,15 +74,15 @@ export const IndividualProject= ({project})=> {
                    
             </div>
 
-            {openSidebarProjectOptions && <SidebarProjectOptions project={project} setOpenSidebarProjectOptions={setOpenSidebarProjectOptions}/>}
+            {openSidebarProjectOptions && <SidebarProjectOptions project={project} setOpenSidebarProjectOptions={setOpenSidebarProjectOptions} setShowConfirmDelete={setShowConfirmDelete}/>}
 
            
             
             <div ref={deleteModalRef} className={showConfirmDelete? "delete-modal":"hidden"} ref={deleteModalRef}>
                 <p>Are you sure you want to delete this project?</p>
                 <span className="delete-modal-buttons">
-                    <button>Delete</button>
-                    <button>Cancel</button>
+                    <button onClick={()=>deleteProject(project.docId)}>Delete</button>
+                    <button onClick={()=> setShowConfirmDelete(false)}>Cancel</button>
                 </span>
                 
             </div>           

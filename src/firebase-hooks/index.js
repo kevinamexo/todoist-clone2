@@ -50,7 +50,7 @@ export const useTasks=selectedProject=>{
         
        return ()=> unsubscribe();
     }, [selectedProject])
-    return {tasks, archivedTasks}
+    return {tasks,setTasks, archivedTasks}
 }
 
 
@@ -86,6 +86,7 @@ export const useTasks=selectedProject=>{
 
 export const useProjects =()=>{
     const [projects, setProjects]= useState([])
+    const [loadedProjects, setLoadedProjects]= useState(false)
   
     useEffect(() => {
         firebase
@@ -102,6 +103,9 @@ export const useProjects =()=>{
                 if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
                     setProjects(allProjects);
                   }
+                
+                setLoadedProjects(true)
+               
 
         })
             
@@ -109,7 +113,35 @@ export const useProjects =()=>{
                         
     }, [projects])
 
-    return {projects, setProjects}
+    return {projects, setProjects,loadedProjects, setLoadedProjects}
 }
 
 
+export const useGetAllTasks=()=>{
+    const [allTasks, setAllTasks] = useState([])
+    const [totalTasks, setTotalTasks]= useState(0)
+    useEffect(()=>{
+        firebase
+            .firestore()
+            .collection('tasks')
+            .where('userId', '==', '2irjij20349cuu204')
+            .get()
+            .then(snapshot=>{
+                const allTasksNew= snapshot.docs.map(task=>({
+                    ...task.data(),
+                    docId: task.id
+                }))
+
+                if (JSON.stringify(allTasksNew) !== JSON.stringify(allTasks)) {
+                    setAllTasks(allTasksNew);
+                  }
+                  
+            })
+        setTotalTasks(allTasks.length)
+    }, [allTasks])
+
+
+
+    return {allTasks, setAllTasks,totalTasks, setTotalTasks}
+
+}

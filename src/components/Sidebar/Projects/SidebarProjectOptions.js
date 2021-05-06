@@ -3,7 +3,7 @@ import React, {useState, useRef, useEffect} from 'react'
 import  {BsArchive, BsTrash} from 'react-icons/bs'
 import './SidebarProjectOptions.css'
 
-function SidebarProjectOptions({project, setOpenSidebarProjectOptions}) {
+function SidebarProjectOptions({project, setOpenSidebarProjectOptions, setShowConfirmDelete}) {
     const projectOptionsMenu= useRef()
     const handleSidebarProjectOptionsMenu=e=>{
         if (projectOptionsMenu.current.contains(e.target)) return
@@ -23,7 +23,11 @@ function SidebarProjectOptions({project, setOpenSidebarProjectOptions}) {
                     <span>Archive Project</span>
                     
                 </li>
-                <li>
+                <li
+                    onClick={()=>setShowConfirmDelete(true)}
+                    tabIndex={0}
+                    role="button"
+                >
                     <span><BsTrash/></span>
                     <span>Delete Project</span>
                     

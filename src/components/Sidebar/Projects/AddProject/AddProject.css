@@ -1,0 +1,19 @@
+.add-project {
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-project__form {
+  height: 60%;
+  width: 400px;
+  background-color: rgb(255, 252, 252);
+  opacity: 1;
+  position: absolute;
+}

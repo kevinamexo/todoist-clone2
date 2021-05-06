@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';s
-import { useSelectedProjectValue, useProjectsValue } from '../../../context';
+import { useSelectedProjectValue, useProjectsValue} from '../../../context';
 import  IndividualProject  from './IndividualProject';
 import './Projects.css'
 const Projects = ({ activeValue = null }) => {
   const [active, setActive] = useState(activeValue);
-  const { setSelectedProject } = useSelectedProjectValue();
+  const { selectedProject,setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
-
+  console.log(projects)
 
    return (
     projects &&
@@ -30,11 +30,13 @@ const Projects = ({ activeValue = null }) => {
           onClick={() => {
             setActive(project.projectId);
             setSelectedProject(project);
+            console.log(selectedProject.name)
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               setActive(project.projectId);
               setSelectedProject(project);
+              console.log(selectedProject.name)
             }
           }}
         >

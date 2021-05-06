@@ -65,6 +65,21 @@ button:active {
 .atm-inbox {
   margin-left: 10px;
   color: rgb(38, 60, 225);
+  cursor: pointer;
+}
+
+.atm-inbox .active,
+.atm-inbox:hover,
+.atm-inbox:focus,
+.atm-calendar:hover,
+.atm-calendar:focus,
+.atm-calendar:hover .atm-calendar .active {
+  background-color: rgb(218, 218, 218);
+  outline: none;
+}
+
+.atm-calendar .active,
+.atm-inbox .active {
 }
 .atm-inbox p,
 .atm-calendar p {
@@ -73,6 +88,7 @@ button:active {
 
 .atm-calendar {
   color: rgb(15, 133, 19);
+  cursor: pointer;
 }
 /* 
 .timeFilter-icons:nth-child(1) p {

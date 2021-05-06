@@ -5,8 +5,9 @@
   padding: 5px;
   cursor: pointer;
   position: relative;
+  /* transition: 0.3s; */
+  transition: background-color 300ms linear;
 }
-
 .sidebar__individual-project:hover,
 .sidebar__individual-project:focus,
 .sidebar__individual-project:active {
