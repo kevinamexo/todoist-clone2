@@ -23,7 +23,7 @@ const ProjectOverlay=()=> {
                 <div className="pO_task-list">
                     <ul className="project-overlay__tasks">
                         {tasks.map(task=>(
-                            <li className="project-overlay-task">
+                            <li className="project-overlay-task" key={task.taskId}>
                                 <Task task={task}/>
                             </li>    
                         ))}

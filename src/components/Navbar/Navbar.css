@@ -126,3 +126,7 @@ ul {
   list-style-type: none;
   display: flex;
 }
+
+.navbar__section2-icon-profile{
+  object-fit: cover;
+}

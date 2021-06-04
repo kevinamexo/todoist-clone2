@@ -6,7 +6,7 @@ import './AddTaskMain.css'
 import {firebase} from '../../../../firebase'
 import { useSelectedProjectValue} from '../../../../context'
 import { VscInbox } from 'react-icons/vsc'
-import {generatePushId} from '../../../../helpers'
+import {generatePushId, generateTaskPushID} from '../../../../helpers'
 
 
 function AddTaskMain({setShowAddTask}) {
@@ -17,6 +17,7 @@ function AddTaskMain({setShowAddTask}) {
     const [dateSet,setDateSet]= useState(false)
     const [activeDateButton, setActiveDateButton]= useState('')
     
+    const taskId= generatePushId()
 
 
     
@@ -43,7 +44,8 @@ function AddTaskMain({setShowAddTask}) {
                     date:dateSet? taskDate:filterDate,
                     projectId,
                     task,
-                    userId: '2irjij20349cuu204'
+                    userId: '2irjij20349cuu204',
+                    taskId:taskId,
                 })
                 .then(()=>{
                     console.log('adding')

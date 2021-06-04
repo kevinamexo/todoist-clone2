@@ -38,6 +38,77 @@ import {
     useLoadingDataValue
 } from './loadingDataContext'
 
+import {
+    AuthContext,
+    AuthProvider,
+    useAuth
+
+} from './AuthContext'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export {useOpenSidebarValue, 
@@ -55,7 +126,10 @@ export {useOpenSidebarValue,
     TasksContextProvider,
     LoadingDataContext,
     LoadingDataContextProvider,
-    useLoadingDataValue
+    useLoadingDataValue,
+    AuthContext,
+    AuthProvider,
+    useAuth
 
     
 }

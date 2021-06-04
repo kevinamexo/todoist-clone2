@@ -1,14 +1,20 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react'
 import {FaBars} from 'react-icons/fa'
 import {AiOutlineMenu, AiOutlinePlus, AiOutlineSearch} from 'react-icons/ai'
 import {CgHome, CgProfile} from 'react-icons/cg'
 import {IoIosTrendingUp} from 'react-icons/io'
 import {VscBellDot} from 'react-icons/vsc'
 import {BsQuestionCircle} from 'react-icons/bs'
-
-import {useOpenSidebarValue} from '../../context'
+import {useOpenSidebarValue, useAuth} from '../../context'
 import './Navbar.css'
-function Navbar() {
+import { useHistory } from 'react-router'
+// import {useAuth} from '../../context'
+
+
+function Navbar({user}) {
+
+    const {currentUser, logout} = useAuth()
+    const history= useHistory()
     const [searchValue, setSearchValue] = useState('')
     const [searchFocus, setSearchFocus]= useState(false)
     const {openSidebar, setOpenSidebar, handleSidebar} = useOpenSidebarValue()
@@ -17,8 +23,16 @@ function Navbar() {
     const clearSearchFocus=(e)=>{
         if (e.target!==searchInput.current){
             setSearchFocus(false)
+        }        
+    }
+    const handleLogout =async ()=>{
+        try{
+            await logout()
+            history.push('/login')
+               
+        } catch(error){
+            console.log(error)
         }
-        
     }
 
     useEffect(()=>{
@@ -77,9 +91,13 @@ function Navbar() {
                         <li className="navbar__section2-icon"><IoIosTrendingUp/></li>
                         <li className="navbar__section2-icon"><BsQuestionCircle/></li>
                         <li className="navbar__section2-icon"><VscBellDot/></li>
-                        <li className="navbar__section2-icon-profile"><CgProfile/></li>
-                    
+                        <li className="navbar__section2-icon-profile">{user? <img src={user.photoURL}/>: <CgProfile/>}</li>
+
                     </ul>
+                    <button className="main__logout"
+                        onClick={handleLogout}>
+                        Logout
+                    </button>  
                 
 
                 
