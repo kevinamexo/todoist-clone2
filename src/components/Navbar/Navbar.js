@@ -91,7 +91,7 @@ function Navbar({user}) {
                         <li className="navbar__section2-icon"><IoIosTrendingUp/></li>
                         <li className="navbar__section2-icon"><BsQuestionCircle/></li>
                         <li className="navbar__section2-icon"><VscBellDot/></li>
-                        <li className="navbar__section2-icon-profile">{user? <img src={user.photoURL}/>: <CgProfile/>}</li>
+                        <li className="navbar__section2-icon-profile">{currentUser? <img src={currentUser.photoURL} className="profile-photo"/>: <CgProfile/>}</li>
 
                     </ul>
                     <button className="main__logout"

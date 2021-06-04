@@ -3,6 +3,8 @@ import {firebase} from '../firebase'
 import  moment from 'moment';
 // import { useProjectsValue } from '../context/projects-context';
 import { timeFiltersExist } from '../helpers';
+import {useTimeFilterValues} from '../context'
+import { timeFilters } from '../constants';
 
 
 export const useTasks=selectedProject=>{
@@ -58,35 +60,10 @@ export const useTasks=selectedProject=>{
 
 
 
-// export const useProjects = () => {
-//     const [projects, setProjects] = useState([]);
-  
-//     useEffect(() => {
-//         firebase
-//             .firestore()
-//             .collection('projects')
-//             .where('userId', '==', 'jlIFXIwyAL3tzHMtzRbw')
-//             .orderBy('projectId')
-//             .get()
-//             .then(snapshot => {
-//                 const allProjects = snapshot.docs.map(project => ({
-//                     ...project.data(),
-//                     docId: project.id,
-//             }));
-  
-//             if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-//                 setProjects(allProjects);
-//             }
-//         });
-//     }, [projects]);
-  
-//     return { projects, setProjects };
-//   };
-
-
 export const useProjects =()=>{
     const [projects, setProjects]= useState([])
     const [loadedProjects, setLoadedProjects]= useState(false)
+
   
     useEffect(() => {
         firebase
@@ -143,5 +120,90 @@ export const useGetAllTasks=()=>{
 
 
     return {allTasks, setAllTasks,totalTasks, setTotalTasks}
+
+}
+
+
+export const useFilteredTasks=selectedProject=>{
+    const [tasks, setTasks]= useState([])
+    const [archivedTasks, setArchivedTasks]= useState([])
+    const {active}= useTimeFilterValues()
+    const [filteredTasks, setFilteredTasks]=useState([])
+    console.log(active)
+
+    let timeTasks=null
+    
+
+    useEffect(()=>{
+        let unsubscribe= firebase 
+            .firestore()
+            .collection('tasks')
+            .where('userId', '==', '2irjij20349cuu204')
+
+        if (active==='today'){
+            console.log('its todaayyy')
+            unsubscribe=unsubscribe
+                .where('date','==',moment().format('DD/MM/YYYY'))
+                .get()
+                .then(snapshot=>{
+                    const timeTasks= snapshot.docs.map(task=>({
+                        ...task.data(),
+                        docId: task.id
+                    }))
+                    console.log(timeTasks)
+                    if(JSON.stringify(timeTasks) !== JSON.stringify(tasks)) {
+                        if (!selectedProject) return
+                        if(selectedProject){
+                            setFilteredTasks(timeTasks.filter());
+                        }
+                        
+                        console.log('set to ',timeTasks)
+                    
+                    }   
+
+                })
+        }else if (active==='inbox'){
+            unsubscribe= unsubscribe
+                .where('date','==','').get().then(snapshot=>{
+                    const timeTasks= snapshot.docs.map(task=>({
+                        ...task.data(),
+                        docId: task.id
+                    }))
+                    console.log(timeTasks)
+                    if(JSON.stringify(timeTasks) !== JSON.stringify(tasks)) {
+                        setFilteredTasks(timeTasks);
+                        console.log('set to ',timeTasks)
+                    }   
+
+                })
+        }else{
+            unsubscribe=unsubscribe
+                .where('date','==',moment().diff(moment(), 'days') > 1)
+                .get()
+                .then(snapshot=>{
+                    const timeTasks= snapshot.docs.map(task=>({
+                        ...task.data(),
+                        docId: task.id
+                    }))
+                    console.log(timeTasks)
+                    if(JSON.stringify(timeTasks) !== JSON.stringify(tasks)) {
+                        setFilteredTasks(timeTasks);
+                        console.log('set to ',timeTasks)
+                        
+                    }   
+
+                    
+                })
+        }
+
+    
+        
+        
+    },[selectedProject, active])
+
+
+
+        
+    return {tasks,filteredTasks,tasks}
 
 }

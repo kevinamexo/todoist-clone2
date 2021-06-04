@@ -130,3 +130,8 @@ ul {
 .navbar__section2-icon-profile{
   object-fit: cover;
 }
+
+.profile-photo{
+  border-radius: 2em;
+  width:35px;
+}
