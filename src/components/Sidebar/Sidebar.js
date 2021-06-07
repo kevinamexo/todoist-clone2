@@ -6,7 +6,8 @@ import {useOpenSidebarValue, useShowAddProjectValue} from '../../context'
 import {AiOutlneArrowRight, AiOutlineDown, AiOutlineRight,AiOutlinePlus} from 'react-icons/ai'
 import Projects from './Projects/Projects'
 import {useSelectedProjectValue, useTasksValue, useTimeFilterValue} from '../../context'
-import AddProject from './Projects/AddProject/AddProject'
+import {Link} from 'react-router-dom'
+import AddProject from '../../AddProject'
 const Sidebar=()=> {
 
     const [openProjects, setOpenProjects]=useState(false)
@@ -64,12 +65,14 @@ const Sidebar=()=> {
                                 Projects    
                             </span>
 
-
+                    
                             <span className="sidebar__add-project"
                                 onClick={()=>setShowAddProject(true)}
                             >
                                 <AiOutlinePlus/>
                             </span>
+                            
+                          
                         </div>
 
                         {openProjects && (

@@ -9,16 +9,16 @@ import Loader from 'react-loader-spinner'
 import Test from './Test'
 import {OpenSidebarProvider,SelectedTimeFilterProvider, ProjectsContextProvider, TasksContextProvider, LoadingDataContextProvider, AuthProvider, TimeFilterProvider, SelectedProjectProvider} from './context'
 import {useShowAddProjectValue, useLoadingDataValue} from './context'
-import AddProject from './components/Sidebar/Projects/AddProject/AddProject'
+
 import { ShowAddProjectProvider } from './context/showAddProjectContext';
 import LoginForm from './components/Pages/LoginForm'
 import SignUpForm from './components/Pages/SignUpForm'
 import {Switch, Route} from 'react-router-dom'
 import PrivateRoute from './PrivateRoute';
+import AddProject from './AddProject'
 
 
 function App() {
-
 
 
   return (
@@ -45,7 +45,9 @@ function App() {
                           <Test/>
                         </Route>
                         <PrivateRoute exact path='/app' component={MainApp}/>
-                      </Switch> 
+                        
+                      </Switch>
+                      
                     </ShowAddProjectProvider>
                   </OpenSidebarProvider>
                 </TasksContextProvider>

@@ -5,7 +5,7 @@ import {useFilteredTasks,useTasks} from '../../firebase-hooks'
 import Task from '../Sidebar/Projects/Task'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {useOpenSidebarValue} from '../../context'
-import AddProject from '../Sidebar/Projects/AddProject/AddProject'
+import AddProject from '../../AddProject'
 
 
 import AddTaskMain from '../Sidebar/Projects/AddTaskMain/AddTaskMain'

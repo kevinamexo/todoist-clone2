@@ -1,17 +1,19 @@
 import React,{useState, useEffect,useRef}  from 'react'
-import {firebase} from '../../../../firebase'
-import {generatePushId} from '../../../../helpers'
-import {useProjectsValue,useShowAddProjectValue} from '../../../../context'
+import ReactDom from 'react-dom'
+import {firebase} from './firebase'
+import {generatePushId} from './helpers'
+import {useProjectsValue,useShowAddProjectValue} from './context'
 import {AiOutlineQuestionCircle} from 'react-icons/ai'
 import './AddProject.css'
-import {Colors as colors} from '../../../../helpers'
+import {Colors as colors} from './helpers'
 import { useForm } from 'react-hook-form'
 
 function AddProject() {
     const addProjectRef= useRef()
     const [projectName, setProjectName]= useState('')
     const {projects, setProjects}= useProjectsValue()
-    const {showAddProject,setShowAddProject}= useShowAddProjectValue()
+    const {showAddProject,setShowAddProject}=useShowAddProjectValue()
+   
     const {register, handleSubmit, errors}= useForm()
     const projectId= generatePushId()
 
@@ -66,10 +68,12 @@ function AddProject() {
         
         return "rgb("+ +r + "," + +g + "," + +b + ")";
       }
-  
-    return (
-        <>
 
+    if (!showAddProject) return null
+  
+    return ReactDom.createPortal(
+        
+        <>
             <div className="add-project">
                 <div className="add-project__modal">
                     <header className="add-project__header">
@@ -84,25 +88,7 @@ function AddProject() {
                         </div>
                         <div>
                             <label htmlFor="color"> Choose a Color</label>
-                            <select className="add-project__color" {...register('color')}>
-                                {Object.entries(colors).map(([color,hex]) => {
-                                    let val=()=>JSON.stringify(color)
-                                    return(
-                                        <div>
-                                            <option value={val}>
-                                                {color}
-                                            </option>
-                                            <span style={{backgroundColor:color}}>.</span>
-                                        </div>
-                                )
-                                })};
-                                {/* {Object.entries(colors).map(([color,hex]) => {
-                                    console.log(hexToRGB(hex))
-                                    console.log(color)
-                                })} */}
-
-                               
-                            </select>
+                            
                         </div>
                         <button type="submit" className="add-project__submit">
                             Add Project
@@ -115,7 +101,8 @@ function AddProject() {
             </div>
         
             
-        </>
+        </>,
+        document.getElementById('portal')
     )
 }
 export default AddProject
