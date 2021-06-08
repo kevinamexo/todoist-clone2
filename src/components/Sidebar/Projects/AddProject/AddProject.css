@@ -17,30 +17,33 @@
   opacity: 1;
   position: absolute;
   border-radius: 10px;
-  
 }
 
-.add-project__header{
+.add-project__header {
   padding: 0 24px;
   height: 55px;
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ddd;
 }
-.add-project__header{
+.add-project__header {
   font-weight: bold;
 }
-.add-project__question{
+.add-project__question {
   font-weight: bold;
   font-size: 20px;
 }
 
-input{
+input {
   margin-top: 10px;
 }
 
-.add-project__form{
+.add-project__form {
   padding: 20px 24px;
+}
+
+option {
+  display: grid;
 }

@@ -11,11 +11,11 @@ import {
     ShowAddProjectProvider
 } from './showAddProjectContext'
 import {
-    SelectedProjectProvider,
-    SelectedProjectContext,
-    useSelectedProjectValue
+    SelectedTimeFilterProvider,
+    SelectedTimeFilterContext,
+    useSelectedTimeFilterValue
 
-} from './selected-project-context'
+} from './selected-timeFilter-context'
 
 import {
     ProjectsContextProvider,
@@ -46,69 +46,17 @@ import {
 } from './AuthContext'
 
 import {
-    useTimeFilterValues,
+    useTimeFilterValue,
     TimeFilterContext,
     TimeFilterProvider
 } from './timeFilterContext'
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import {
+    SelectedProjectContext,
+    SelectedProjectProvider,
+    useSelectedProjectValue,    
+} from './selectedProjectContext'
 
 
 
@@ -119,14 +67,22 @@ import {
 export {useOpenSidebarValue, 
     OpenSidebarProvider,
     OpenSidebarContext,
-    SelectedProjectContext,
-    SelectedProjectProvider,
-    useSelectedProjectValue,
+    
+    SelectedTimeFilterContext,
+    SelectedTimeFilterProvider,
+    useSelectedTimeFilterValue,
+    
     useProjectsValue,
     ProjectsContext,
     ProjectsContextProvider,
+    
     useShowAddProjectValue,
     useTasksValue,
+    
+    SelectedProjectContext,
+    SelectedProjectProvider,
+    useSelectedProjectValue,
+
     TasksContext,
     TasksContextProvider,
     LoadingDataContext,
@@ -137,7 +93,7 @@ export {useOpenSidebarValue,
     useAuth,
     TimeFilterContext,
     TimeFilterProvider,
-    useTimeFilterValues
+    useTimeFilterValue,
 
     
 }

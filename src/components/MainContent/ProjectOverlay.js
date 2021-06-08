@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import './ProjectOverlay.css'
-import {useSelectedProjectValue, useShowAddProjectValue} from '../../context'
-import {useTasks, useFilteredTasks} from '../../firebase-hooks'
+import {useSelectedProjectValue, useShowAddProjectValue, useTimeFilterValue} from '../../context'
+import {useFilteredTasks,useTasks} from '../../firebase-hooks'
 import Task from '../Sidebar/Projects/Task'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {useOpenSidebarValue} from '../../context'
@@ -9,20 +9,23 @@ import AddProject from '../Sidebar/Projects/AddProject/AddProject'
 
 
 import AddTaskMain from '../Sidebar/Projects/AddTaskMain/AddTaskMain'
-const ProjectOverlay=({active})=> {
+const ProjectOverlay=()=> {
 
     const {selectedProject} = useSelectedProjectValue()
-    const {tasks, setTasks}= useTasks(selectedProject.projectId)
-    const {filteredTasks,timeTasks}= useFilteredTasks(selectedProject.projectId)
+    const {active,setActive}= useTimeFilterValue()
+    const {tasks, setTasks}= useTasks(selectedProject, active)
+    const {filteredTasks,timeTasks}= useFilteredTasks(selectedProject)
     const {openSidebar} = useOpenSidebarValue()
     const [showAddTask, setShowAddTask]= useState(false)
-    const {showAddProject,setShowAddProject}= useShowAddProjectValue()-
-
-    console.log(selectedProject.projectId)
-    return (
+    const {showAddProject,setShowAddProject}= useShowAddProjectValue()
+    
+    
+    console.log(selectedProject)
+    return(
         <>
+
             <div className={openSidebar?"project-overlay-container":"project-overlay-container-full"}>
-                <div className="p-o-header">{selectedProject.name}</div>
+                <div className="p-o-header">{selectedProject?selectedProject.name:''}</div>
                 <div className="pO_task-list">
                     <ul className="project-overlay__tasks">
                         {filteredTasks.map(task=>(

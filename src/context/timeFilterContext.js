@@ -14,4 +14,4 @@ export const TimeFilterProvider= ({children})=>{
     )
 }
 
-export const useTimeFilterValues=()=> useContext(TimeFilterContext)
+export const useTimeFilterValue=()=> useContext(TimeFilterContext)

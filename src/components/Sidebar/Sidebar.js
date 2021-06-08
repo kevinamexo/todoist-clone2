@@ -5,14 +5,14 @@ import {IoTodayOutline, IoCalendarOutline} from 'react-icons/io5'
 import {useOpenSidebarValue, useShowAddProjectValue} from '../../context'
 import {AiOutlneArrowRight, AiOutlineDown, AiOutlineRight,AiOutlinePlus} from 'react-icons/ai'
 import Projects from './Projects/Projects'
-import {useSelectedProjectValue, useTasksValue, useTimeFilterValues} from '../../context'
+import {useSelectedProjectValue, useTasksValue, useTimeFilterValue} from '../../context'
 import AddProject from './Projects/AddProject/AddProject'
 const Sidebar=()=> {
 
     const [openProjects, setOpenProjects]=useState(false)
     const [openLabels, setOpenLabels]= useState(false)
     const [openFilters, setOpenFilters]= useState(false)
-    const {active,setActive}= useTimeFilterValues()
+    const {active,setActive}= useTimeFilterValue()
     const {openSidebar} = useOpenSidebarValue()
     const {showAddProject,setShowAddProject}= useShowAddProjectValue()
     const handleOpenProjects=()=>setOpenProjects(!openProjects)

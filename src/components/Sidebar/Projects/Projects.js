@@ -30,13 +30,13 @@ const Projects = ({ activeValue = null }) => {
           onClick={() => {
             setActive(project.projectId);
             setSelectedProject(project);
-            console.log(selectedProject.name)
+            console.log(project.name)
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               setActive(project.projectId);
               setSelectedProject(project);
-              console.log(selectedProject.name)
+              console.log(project.name)
             }
           }}
         >

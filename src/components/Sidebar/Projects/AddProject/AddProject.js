@@ -85,13 +85,17 @@ function AddProject() {
                         <div>
                             <label htmlFor="color"> Choose a Color</label>
                             <select className="add-project__color" {...register('color')}>
-                                {Object.entries(colors).map(([color,hex]) => (
-                                    <option value={hex}>
-                                        {color}
-                                        <span className="colorOption" style={{backgroundColor:`${hexToRGB(hex)}`}}></span>
-                                    </option>
-                            
-                                ))};
+                                {Object.entries(colors).map(([color,hex]) => {
+                                    let val=()=>JSON.stringify(color)
+                                    return(
+                                        <div>
+                                            <option value={val}>
+                                                {color}
+                                            </option>
+                                            <span style={{backgroundColor:color}}>.</span>
+                                        </div>
+                                )
+                                })};
                                 {/* {Object.entries(colors).map(([color,hex]) => {
                                     console.log(hexToRGB(hex))
                                     console.log(color)
