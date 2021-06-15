@@ -60,7 +60,7 @@ export const IndividualProject= ({project})=> {
             <span className="project__dot-container">
                 <div className="project-dot"></div>
             </span>
-            <span className="sidebar__project-name">{project.name}</span>
+            <span className="sidebar__project-name" style={{color:project.color||'rgb(248, 62, 62)'}}>{project.name}</span>
             
             <div className="sidebar__project-delete-span"
                 onClick={()=>{

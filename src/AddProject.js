@@ -1,11 +1,12 @@
 import React,{useState, useEffect,useRef}  from 'react'
 import ReactDom from 'react-dom'
 import {firebase} from './firebase'
-import {generatePushId} from './helpers'
+import {Colors, generatePushId} from './helpers'
 import {useProjectsValue,useShowAddProjectValue} from './context'
 import {AiOutlineQuestionCircle} from 'react-icons/ai'
+import {BsFillCircleFill} from 'react-icons/bs'
 import './AddProject.css'
-import {Colors as colors} from './helpers'
+import {Colors as colors, hexCodes, names} from './helpers'
 import { useForm } from 'react-hook-form'
 
 function AddProject() {
@@ -13,7 +14,8 @@ function AddProject() {
     const [projectName, setProjectName]= useState('')
     const {projects, setProjects}= useProjectsValue()
     const {showAddProject,setShowAddProject}=useShowAddProjectValue()
-   
+    const [selectedColor, setSelectedColor]= useState('blue')
+    const [showColorList, setShowColorList]= useState(false)
     const {register, handleSubmit, errors}= useForm()
     const projectId= generatePushId()
 
@@ -26,6 +28,7 @@ function AddProject() {
                 projectId,
                 name: projectName,
                 userId:'2irjij20349cuu204', 
+                color:selectedColor
             })
             .then(()=>{
                 setProjects([...projects])
@@ -86,10 +89,28 @@ function AddProject() {
                             <label htmlFor="name">Name</label>
                             <input name="Name"  value={projectName} onChange={e=>setProjectName(e.target.value)}/>
                         </div>
-                        <div>
-                            <label htmlFor="color"> Choose a Color</label>
-                            
+                        <div className="form-group__color">
+                            <p>Color</p>
+                            <div onClick={()=>setShowColorList(!showColorList)} className="form-group__color-select">
+                                <span className="form-group__color-circle" role="button" style={{color:selectedColor}}><BsFillCircleFill/></span>
+                                <p>{selectedColor}</p>
+                            </div>
                         </div>
+                        <ul className={showColorList?"form-group__color-color-list":"hidden"} role="listbox" >
+                            {Colors.map(color=>(
+                                <li className="form-group__color" 
+                                    onClick={()=>{
+                                        setSelectedColor(color.name)
+                                        setShowColorList(false)
+                                    }}>
+                                    <div className="form-group__color-select">
+                                        <span className="form-group__color-circle" role="button" style={{color:color.hex}}><BsFillCircleFill/></span>
+                                        <p>{color.name}</p>
+                                    </div>
+                                </li>
+                                
+                            ))}
+                        </ul>
                         <button type="submit" className="add-project__submit">
                             Add Project
                         </button>
