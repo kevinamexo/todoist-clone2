@@ -1,11 +1,12 @@
 import React, {useState, useEffect } from 'react'
 import './ProjectOverlay.css'
 import {useSelectedProjectValue, useShowAddProjectValue, useTimeFilterValue} from '../../context'
-import {useFilteredTasks,useTasks} from '../../firebase-hooks'
+import {useTasks,useGetAllTasks,useFilterTasks} from '../../firebase-hooks'
 import Task from '../Sidebar/Projects/Task'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {useOpenSidebarValue} from '../../context'
 import AddProject from '../../AddProject'
+import moment from 'moment'
 
 
 import AddTaskMain from '../Sidebar/Projects/AddTaskMain/AddTaskMain'
@@ -13,26 +14,28 @@ const ProjectOverlay=()=> {
 
     const {selectedProject} = useSelectedProjectValue()
     const {active,setActive}= useTimeFilterValue()
-    const {tasks, setTasks}= useTasks(selectedProject, active)
-    const {filteredTasks,timeTasks}= useFilteredTasks(selectedProject)
+    const {tasks}= useTasks()
     const {openSidebar} = useOpenSidebarValue()
     const [showAddTask, setShowAddTask]= useState(false)
     const {showAddProject,setShowAddProject}= useShowAddProjectValue()
+    const {allTasks}= useGetAllTasks()
+    const {filteredTasks}=useFilterTasks()
     
-    
-    console.log(selectedProject)
+ 
+
     return(
         <>
 
             <div className={openSidebar?"project-overlay-container":"project-overlay-container-full"}>
-                <div className="p-o-header">{selectedProject?selectedProject.name:''}</div>
+                <div className="p-o-header">{selectedProject?selectedProject.name:active.charAt(0).toUpperCase() + active.slice(1)}</div>
                 <div className="pO_task-list">
                     <ul className="project-overlay__tasks">
-                        {filteredTasks.map(task=>(
+                        {tasks&&tasks.map(task=>(
                             <li className="project-overlay-task" key={task.taskId}>
                                 <Task task={task}/>
-                            </li>    
-                        ))}
+                            </li>
+                            ))
+                        }
 
                     </ul>
                 </div>

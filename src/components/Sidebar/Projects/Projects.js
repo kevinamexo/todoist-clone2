@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 // import PropTypes from 'prop-types';s
-import { useSelectedProjectValue, useProjectsValue} from '../../../context';
+import { useSelectedProjectValue, useProjectsValue,useTimeFilterValue} from '../../../context';
 import  IndividualProject  from './IndividualProject';
 import './Projects.css'
 const Projects = ({ activeValue = null }) => {
-  const [active, setActive] = useState(activeValue);
+  const [activeEl, setActiveEl] = useState(activeValue);
   const { selectedProject,setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
+  const {active,setActive}=useTimeFilterValue()
   console.log(projects)
 
    return (
@@ -28,14 +29,16 @@ const Projects = ({ activeValue = null }) => {
           tabIndex={0}
           aria-label={`Select ${project.name} as the task project`}
           onClick={() => {
-            setActive(project.projectId);
+            setActiveEl(project.projectId);
             setSelectedProject(project);
+            setActive(null)
             console.log(project.name)
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              setActive(project.projectId);
+              setActiveEl(project.projectId);
               setSelectedProject(project);
+              setActive(null)
               console.log(project.name)
             }
           }}

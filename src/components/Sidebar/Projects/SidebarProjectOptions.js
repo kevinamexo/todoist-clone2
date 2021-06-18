@@ -8,7 +8,42 @@ function SidebarProjectOptions({project, setOpenSidebarProjectOptions, setShowCo
     const handleSidebarProjectOptionsMenu=e=>{
         if (projectOptionsMenu.current.contains(e.target)) return
 
-        setOpenSidebarProjectOptions(false)
+        setOpenSidebarProjectOptions(false)  // const addtask=()=>{
+    //     let projectId= project||selectedProject
+    //     let filterDate = ''
+    //     projectId= selectedProject? selectedProject.projectId: ''
+        
+        
+    //     // if(projectId === 'TODAY'){
+    //     //     filterDate= moment().format('DD/MM/YYYY')
+    //     // } else{
+    //     //     filterDate=''
+    //     // }
+    
+    //     return(
+    //         task&&
+    //         projectId&&
+    //         firebase
+    //             .firestore()
+    //             .collection('tasks')
+    //             .add({
+    //                 archived:false,
+    //                 date:dateSet? taskDate:filterDate,
+    //                 projectId,
+    //                 task,
+    //                 userId: '2irjij20349cuu204',
+    //                 taskId:taskId,
+    //             })
+    //             .then(()=>{
+    //                 console.log('adding')
+    //                 setTask('')
+    //                 setProject('')
+    //                 setShowAddTask(false)
+    //             })
+
+    //     )
+    
+    // }
     }
 
     useEffect(()=>{

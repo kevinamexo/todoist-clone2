@@ -20,7 +20,7 @@ const Sidebar=()=> {
     const handleOpenLabels=()=>setOpenLabels(!openLabels)
     const handleOpenFilters=()=>setOpenFilters(!openFilters)
     const {allTasks,setAllTasks, totalTasks, setTotalTasks}=useTasksValue()
-    
+    const {selectedProject, setSelectedProject}= useSelectedProjectValue()
 
     
     
@@ -30,7 +30,10 @@ const Sidebar=()=> {
             <div className={`sidebar ${openSidebar ?"show":"hidden-sidebar"}`}>
                 <ul className="sidebar__times">
                     <li className ={`sidebar-inbox ${active==='inbox'? 'active': undefined}`}
-                        onClick={()=>setActive('inbox')}
+                        onClick={()=>{
+                            setActive('inbox')
+                            setSelectedProject(null)
+                            }}
 
                     >
                         <span className="sidebar-icon"><VscInbox/></span>
@@ -38,13 +41,21 @@ const Sidebar=()=> {
                         <span className="no_tasks">{allTasks.length} </span>
                     </li>
                     <li className= {`sidebar-today ${active==='today'? 'active': undefined}`}
-                        onClick={()=>setActive('today')}
-                    >
+                        onClick={()=>{
+                            setActive('today')
+                            setSelectedProject(null)
+                            
+                            }}
+                        >
                         <span className="sidebar-icon"><IoTodayOutline/></span>
                         <span  className="time-label">Today</span>
                     </li>
                     <li className={`sidebar-upcoming ${active==='upcoming'? 'active': undefined}`}
-                        onClick={()=>setActive('upcoming')}
+                        onClick={()=>{
+                            setActive('upcoming')
+                            // setSelectedProject(null)
+                        }}
+
                     >
                         <span className="sidebar-icon"><IoCalendarOutline/></span>
                         <span className="time-label">Upcoming</span>  

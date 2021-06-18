@@ -4,9 +4,11 @@ import {MdLabelOutline} from 'react-icons/md'
 import moment from 'moment'
 import './AddTaskMain.css'
 import {firebase} from '../../../../firebase'
-import { useSelectedTimeFilterValue, useSelectedProjectValue} from '../../../../context'
+import {useGetAllTasks,useFilterTasks} from '../../../../firebase-hooks'
+import { useTimeFilterValue,useSelectedTimeFilterValue, useSelectedProjectValue} from '../../../../context'
 import { VscInbox } from 'react-icons/vsc'
 import {generatePushId, generateTaskPushID} from '../../../../helpers'
+
 
 
 function AddTaskMain({setShowAddTask}) {
@@ -16,42 +18,44 @@ function AddTaskMain({setShowAddTask}) {
     const {selectedProject}= useSelectedProjectValue()
     const [dateSet,setDateSet]= useState(false)
     const [activeDateButton, setActiveDateButton]= useState('')
-    
     const taskId= generatePushId()
-
-
+    const {allTasks,setAllTasks}= useGetAllTasks()
+    const {active}= useTimeFilterValue()
+    const {filteredTasks,setFilteredTasks}=useFilterTasks()
     
     const addtask=()=>{
-        let projectId= project||selectedProject
+       
+        let projectId= project||selectedProject||null;
         let filterDate = ''
-        projectId= selectedProject? selectedProject.projectId: ''
-        
-        
-        // if(projectId === 'TODAY'){
-        //     filterDate= moment().format('DD/MM/YYYY')
-        // } else{
-        //     filterDate=''
-        // }
     
+        if(active==='today'){
+            filterDate = moment().format('DD/MM/YYYY')
+        }else if (active==='inbox'){
+            filterDate=""
+        }
+
+       
+        
+
         return(
-            task&&
-            projectId&&
             firebase
                 .firestore()
                 .collection('tasks')
                 .add({
                     archived:false,
                     date:dateSet? taskDate:filterDate,
-                    projectId,
+                    projectId:selectedProject&&selectedProject.projectId||'',
                     task,
                     userId: '2irjij20349cuu204',
                     taskId:taskId,
                 })
                 .then(()=>{
-                    console.log('adding')
+                    setFilteredTasks([...filteredTasks])
                     setTask('')
                     setProject('')
                     setShowAddTask(false)
+          
+                    
                 })
 
         )
@@ -59,7 +63,6 @@ function AddTaskMain({setShowAddTask}) {
     }
 
     
-
     return (
         <>
             <h1>{taskDate}</h1>
@@ -138,7 +141,7 @@ function AddTaskMain({setShowAddTask}) {
                         addtask()
                     }
                 }}
-                onClick={()=>addtask()}
+                onClick={addtask}
             >
                 Add Task
             </button>

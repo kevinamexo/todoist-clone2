@@ -20,38 +20,30 @@ function AddProject() {
     const projectId= generatePushId()
 
     
-    const addProject=()=>{
-        firebase.
-            firestore()
-            .collection('projects')
-            .add({
-                projectId,
-                name: projectName,
-                userId:'2irjij20349cuu204', 
-                color:selectedColor
-            })
-            .then(()=>{
-                setProjects([...projects])
-                setProjectName('')
-                setShowAddProject(false)
-            })
+    const addProject=(e)=>{
+        e.preventDefault()
+        return(
     
-   
-        
-    }
+            firebase
+                .firestore()
+                .collection('projects')
+                .add({
+                    projectId,
+                    name: projectName,
+                    userId:'2irjij20349cuu204', 
+                    color:selectedColor
+                })
+                .then(()=>{
+                    setProjects([...projects])
+                    setProjectName('')
+                    setShowAddProject(false)
+                })
+            
+            
+            
+            )
+        }
 
-    // const handleShowAddProject=e=>{
-    //     if (addProjectRef && addProjectRef.current.contains(e.target)) return
-
-    //     setShowAddProject(false)
-
-    // }
-
-    // useEffect(()=>{
-    //    document.addEventListener('mousedown', handleShowAddProject)
-
-    //    return ()=>document.removeEventListener('mousedown', handleShowAddProject)
-    // },[])
 
     function hexToRGB(h) {
         let r = 0, g = 0, b = 0;

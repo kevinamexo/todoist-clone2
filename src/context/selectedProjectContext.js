@@ -5,7 +5,7 @@ export const SelectedProjectContext= createContext()
 
 
 export const SelectedProjectProvider=({children})=>{
-    const [selectedProject,setSelectedProject]= useState(null)
+    const [selectedProject,setSelectedProject]= useState('1')
 
     return(
         <SelectedProjectContext.Provider value={{selectedProject,setSelectedProject}}>

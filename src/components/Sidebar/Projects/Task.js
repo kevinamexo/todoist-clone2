@@ -25,6 +25,8 @@ function Task({task}) {
                 console.log('deleted')  
             })
     }
+
+
     
     return (
         <div className="pO-task"> 
@@ -35,8 +37,7 @@ function Task({task}) {
                 role="button"
                 tabIndex={0}
                 onClick={()=>{
-                    deleteTask(task.id)
-                    console.log(task.id)
+                    deleteTask(task.docId);
                 }
                 }
             >
