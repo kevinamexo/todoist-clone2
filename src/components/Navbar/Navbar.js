@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'
 import {FaBars} from 'react-icons/fa'
+import {IoIosLogOut} from 'react-icons/io'
 import {AiOutlineMenu, AiOutlinePlus, AiOutlineSearch} from 'react-icons/ai'
 import {CgHome, CgProfile} from 'react-icons/cg'
 import {IoIosTrendingUp} from 'react-icons/io'
@@ -9,7 +10,7 @@ import {useOpenSidebarValue, useAuth} from '../../context'
 import './Navbar.css'
 import { useHistory } from 'react-router'
 // import {useAuth} from '../../context'
-
+import UserWidget from './UserWidget/UserWidget'
 
 function Navbar({user}) {
 
@@ -18,9 +19,13 @@ function Navbar({user}) {
     const [searchValue, setSearchValue] = useState('')
     const [searchFocus, setSearchFocus]= useState(false)
     const {openSidebar, setOpenSidebar, handleSidebar} = useOpenSidebarValue()
-
+    const [showUserWidget,setShowUserWidget]= useState(true)
     const searchInput= useRef()
+    const userWidgetRef= useRef()
+    const navbarProfile=useRef()
+
     const clearSearchFocus=(e)=>{
+
         if (e.target!==searchInput.current){
             setSearchFocus(false)
         }        
@@ -29,20 +34,35 @@ function Navbar({user}) {
         try{
             await logout()
             history.push('/login')
-               
+            
         } catch(error){
             console.log(error)
         }
     }
+    const handleShowUserWidget =e=>{
+        if (userWidgetRef.current.contains(e.target)) return
+        if (showUserWidget && navbarProfile.current.contains(e.target)) return
+
+
+        
+        setShowUserWidget(false)
+    }
+
+    
+
 
     useEffect(()=>{
         document.addEventListener('click', clearSearchFocus)
-
-        return ()=> document.removeEventListener('click', clearSearchFocus)
-
+        document.addEventListener('mousedown', handleShowUserWidget)
+        
+        return ()=> {
+            document.removeEventListener('click', clearSearchFocus)
+        
+            document.removeEventListener('mousedown', handleShowUserWidget)
+        }
     },[])
 
-
+    
 
     return (
         <div className="navbar">
@@ -91,13 +111,36 @@ function Navbar({user}) {
                         <li className="navbar__section2-icon"><IoIosTrendingUp/></li>
                         <li className="navbar__section2-icon"><BsQuestionCircle/></li>
                         <li className="navbar__section2-icon"><VscBellDot/></li>
-                        <li className="navbar__section2-icon-profile">{currentUser? <img src={currentUser.photoURL} className="profile-photo"/>: <CgProfile/>}</li>
+                        <li className="navbar__section2-icon-profile" ref={navbarProfile}
+                            onClick={()=>setShowUserWidget(!showUserWidget)}
+                        >
+                            {currentUser? <img src={currentUser.photoURL} className="profile-photo"/>: <CgProfile/>}
+                           
+                        </li>
+                        <div ref={userWidgetRef} className={ showUserWidget?"navbar__user-overlay":"hidden"}>
+                            <section className="user-overlay__header">
+                                <div className="user-overlay__section1">
+                                    <img src={currentUser.photoURL} className="user-overlay__user-photo"/>
+                                    <span className="user-overlay__user-details">
+                                        <p className="displayName">{currentUser.displayName}</p>
+                                        <p className="email">{currentUser.email}</p>
+                                    </span>
+                                </div>
+                                <div 
+                                    role="button"
+                                    className="user-overlay__logout-section"
+                                    onClick={handleLogout}
+                                >
+                                    <IoIosLogOut/>
+                                    <p>Logout</p>
 
+                                </div>
+                            </section>
+                        </div>
+                        
                     </ul>
-                    <button className="main__logout"
-                        onClick={handleLogout}>
-                        Logout
-                    </button>  
+
+                     
                 
 
                 
