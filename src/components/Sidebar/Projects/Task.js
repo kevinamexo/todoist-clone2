@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {firebase} from '../../../firebase'
 import {FaRegCheckCircle, FaRegCircle} from 'react-icons/fa'
 import {GrCheckmark} from 'react-icons/gr'
-import {useTasks} from '../../../firebase-hooks'
+import {useTasks, useFilterTasks} from '../../../firebase-hooks'
 import {useTasksValue, useProjectsValue} from '../../../context'
 import './Task.css'
 
@@ -11,6 +11,7 @@ function Task({task}) {
     const [displayCheck, setDisplayCheck]= useState(false)
     const {allTasks, setAllTasks}= useTasksValue()
     const {projects}= useProjectsValue()
+    const {filteredTasks,setFilteredTasks}=useFilterTasks()
     
     
     
@@ -21,7 +22,7 @@ function Task({task}) {
             .doc(docId)  
             .delete()
             .then(()=>{
-                setAllTasks([...allTasks])
+                setFilteredTasks([...filteredTasks])
                 console.log('deleted')  
             })
     }
@@ -37,7 +38,7 @@ function Task({task}) {
                 role="button"
                 tabIndex={0}
                 onClick={()=>{
-                    deleteTask(task.docId);
+                    deleteTask(task.id);
                 }
                 }
             >

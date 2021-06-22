@@ -27,7 +27,7 @@ const ProjectOverlay=()=> {
         <>
 
             <div className={openSidebar?"project-overlay-container":"project-overlay-container-full"}>
-                <div className="p-o-header">{selectedProject?selectedProject.name:active.charAt(0).toUpperCase() + active.slice(1)}</div>
+                <div className="p-o-header">{selectedProject?selectedProject.name:active? active.charAt(0).toUpperCase() + active.slice(1):''}</div>
                 <div className="pO_task-list">
                     <ul className="project-overlay__tasks">
                         {tasks&&tasks.map(task=>(

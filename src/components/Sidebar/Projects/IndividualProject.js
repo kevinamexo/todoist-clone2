@@ -4,7 +4,7 @@ import {GrCheckmark} from 'react-icons/gr'
 import {BiDotsHorizontalRounded} from 'react-icons/bi'
 import {firebase} from '../../../firebase'
 import './Project.css'
-import {useProjectsValue, useSelectedProjectValue} from '../../../context'
+import {useProjectsValue, useSelectedProjectValue,useTimeFilterValue} from '../../../context'
 import SidebarProjectOptions from './SidebarProjectOptions'
 
 
@@ -17,8 +17,7 @@ export const IndividualProject= ({project})=> {
     const {projects, setProjects}= useProjectsValue()
     const {setSelectedProject}= useSelectedProjectValue()
     const deleteModalRef= useRef()
-
-   
+    const {active,setActive}= useTimeFilterValue()
 
     const deleteProject=(docId)=>{
         firebase
@@ -28,7 +27,8 @@ export const IndividualProject= ({project})=> {
             .delete()
             .then(()=>{
                 setProjects([...projects])
-                setSelectedProject('INBOX')
+                setActive('inbox')
+                setSelectedProject(null)
 
             })
     }
