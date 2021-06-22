@@ -11,6 +11,7 @@ import './Navbar.css'
 import { useHistory } from 'react-router'
 // import {useAuth} from '../../context'
 import UserWidget from './UserWidget/UserWidget'
+import {useShowQuickAddTaskValue} from '../../context/showQuickAddTaskContext'
 
 function Navbar({user}) {
 
@@ -23,6 +24,7 @@ function Navbar({user}) {
     const searchInput= useRef()
     const userWidgetRef= useRef()
     const navbarProfile=useRef()
+    const {showQuickAddTask,setShowQuickAddTask}= useShowQuickAddTaskValue()
 
     const clearSearchFocus=(e)=>{
 
@@ -107,7 +109,9 @@ function Navbar({user}) {
             
                 <div className="navbar__section2">
                     <ul>
-                        <li className="navbar__section2-icon"><AiOutlinePlus/></li>
+                        <li className="navbar__section2-icon"
+                             onClick={()=>setShowQuickAddTask(true)}
+                        ><AiOutlinePlus/></li>
                         <li className="navbar__section2-icon"><IoIosTrendingUp/></li>
                         <li className="navbar__section2-icon"><BsQuestionCircle/></li>
                         <li className="navbar__section2-icon"><VscBellDot/></li>
