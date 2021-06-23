@@ -110,7 +110,10 @@ function Navbar({user}) {
                 <div className="navbar__section2">
                     <ul>
                         <li className="navbar__section2-icon"
-                             onClick={()=>setShowQuickAddTask(true)}
+                             onClick={()=>{
+                                 setShowQuickAddTask(true)
+                                console.log("show quick add task")
+                            }}
                         ><AiOutlinePlus/></li>
                         <li className="navbar__section2-icon"><IoIosTrendingUp/></li>
                         <li className="navbar__section2-icon"><BsQuestionCircle/></li>

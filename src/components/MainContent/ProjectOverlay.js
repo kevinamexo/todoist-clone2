@@ -1,15 +1,15 @@
 import React, {useState, useEffect } from 'react'
 import './ProjectOverlay.css'
-import {useSelectedProjectValue, useShowAddProjectValue, useTimeFilterValue} from '../../context'
+import {useSelectedProjectValue, useShowAddProjectValue, useTimeFilterValue, useShowQuickAddTaskValue} from '../../context'
 import {useTasks,useGetAllTasks,useFilterTasks} from '../../firebase-hooks'
 import Task from '../Sidebar/Projects/Task'
 import {AiOutlinePlus} from 'react-icons/ai'
 import {useOpenSidebarValue} from '../../context'
 import AddProject from '../../AddProject'
+
 import moment from 'moment'
-
-
 import AddTaskMain from '../Sidebar/Projects/AddTaskMain/AddTaskMain'
+import AddTaskMini from '../modals/AddTaskMini'
 const ProjectOverlay=()=> {
 
     const {selectedProject} = useSelectedProjectValue()
@@ -20,7 +20,7 @@ const ProjectOverlay=()=> {
     const {showAddProject,setShowAddProject}= useShowAddProjectValue()
     const {allTasks}= useGetAllTasks()
     const {filteredTasks}=useFilterTasks()
-    
+    const {showQuickAddTask}= useShowQuickAddTaskValue()
  
 
     return(
@@ -56,7 +56,8 @@ const ProjectOverlay=()=> {
                 }   
 
             </div>
-            {showAddProject &&<AddProject/>}   
+            {showAddProject &&<AddProject/>} 
+            {showQuickAddTask&&<AddTaskMini/>}  
     </>
     )
 }

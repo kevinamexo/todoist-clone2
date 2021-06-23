@@ -2,9 +2,10 @@
     opacity: 1;
     height: 100vh;
     width: 100vw;
-    z-index: 1000;
+    z-index: 1001;
     position: absolute;
     display: flex;
+    align-items: center;
     justify-content: center;
     background-color: rgba(41, 41, 41, 0.5);
     top: 0;
@@ -12,3 +13,135 @@
     left: 0;
     right: 0;
 }
+
+.quick-add-task-modal{
+    height: 200px;
+    width: 550px;
+    background-color: rgba(255, 255, 255);
+    opacity: 1;
+    border-radius: 10px;
+    opacity: 1;
+    z-index: 1000;
+    margin-top: 50px;
+    padding:20px;
+    position: relative;
+
+}
+.close-quick-add-task{
+    position:absolute;
+    color:rgb(160, 160, 160);
+    top:20px;
+    right:20px;
+    font-size: 25px;
+    font-weight:100;
+    cursor:pointer;
+}
+
+.close-quick-add-task:hover{
+    color:black;
+}
+
+.quick-add-task-form{
+   
+   margin-top: 15px;
+}
+.quick-add-task-form-group{
+    
+    border-radius: 5px;
+    padding:10px;
+   border: 1px solid rgb(199, 199, 199);
+}
+
+.quick-add-task-input input{
+    border: none !important;
+    outline: none;
+    
+
+}
+
+.quick-add-task-input{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    padding:0px;
+    cursor: pointer;
+}
+
+.quickAddTask_add-btn{
+    color:#fff;
+    background-color:#db4c3f;
+    opacity:0.5;
+    margin-top:10px;
+    font-size: 13px !important; 
+    padding: 6px 12px 7px;
+    outline: none !important;
+    border:none !important;
+    border-radius: 5px;
+}
+
+.quickAddTask_add-btn:hover{
+    opacity: 1;
+}
+.quick-add-task-input span,
+.quick-add-task-timeFilter{
+    display:flex;
+}
+
+.quick-add-task-input span{
+    margin-top:10px;
+}
+
+.quick-add-task-timeFilter{
+    padding: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    border:1px solid rgb(214, 214, 214);
+    background-color:#fff;
+}
+
+
+.quick-add-task-timeFilter:hover{
+    background-color:rgb(238, 238, 238);
+}
+
+.quick-add-task-timeFilter:nth-child(1){
+    color:#058527;
+}
+.quick-add-task-timeFilter:nth-child(2){
+    margin-left: 10px;
+    color:#246fe0;
+}
+
+.active-quick-add-task-timeFilter p,
+.quick-add-task-timeFilter p{
+    margin-left:5px;
+    font-size: 13px;;
+    
+}
+.active-quick-add-task-timeFilter-inbox{
+    display:flex;
+    background-color:rgb(235, 235, 235) !important;
+    padding: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    border:1px solid rgb(214, 214, 214);
+    background-color:#fff;
+    margin-left: 10px;
+    color:#246fe0;
+}
+
+.active-quick-add-task-timeFilter-today{
+    display:flex;
+    background-color:rgb(235, 235, 235) !important;
+    padding: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    border:1px solid rgb(214, 214, 214);
+    background-color:#fff;
+    color:#058527;
+    
+}
+

@@ -59,7 +59,11 @@ import {
 } from './selectedProjectContext'
 
 
-
+import {
+    useShowQuickAddTaskValue,
+    ShowQuickAddTaskProvider,
+    ShowQuickAddTaskContext
+} from './showQuickAddTaskContext'
 
 
 
@@ -85,15 +89,22 @@ export {useOpenSidebarValue,
 
     TasksContext,
     TasksContextProvider,
+
     LoadingDataContext,
     LoadingDataContextProvider,
     useLoadingDataValue,
+
     AuthContext,
     AuthProvider,
     useAuth,
+
     TimeFilterContext,
     TimeFilterProvider,
     useTimeFilterValue,
+    
+    useShowQuickAddTaskValue,
+    ShowQuickAddTaskProvider,
+    ShowQuickAddTaskContext
 
     
 }
