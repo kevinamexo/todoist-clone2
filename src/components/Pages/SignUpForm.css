@@ -141,6 +141,7 @@ label {
   /* font-weight: bold; */
   border: none;
   border-radius: 3px;
+  cursor:pointer;
 }
 
 .terms {

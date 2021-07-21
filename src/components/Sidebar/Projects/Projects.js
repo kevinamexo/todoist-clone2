@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import PropTypes from 'prop-types';s
-import { useSelectedProjectValue, useProjectsValue,useTimeFilterValue} from '../../../context';
-import  IndividualProject  from './IndividualProject';
-import './Projects.css'
+import {
+  useSelectedProjectValue,
+  useProjectsValue,
+  useTimeFilterValue,
+} from "../../../context";
+import IndividualProject from "./IndividualProject";
+import "./Projects.css";
 const Projects = ({ activeValue = null }) => {
   const [activeEl, setActiveEl] = useState(activeValue);
-  const { selectedProject,setSelectedProject } = useSelectedProjectValue();
+  const { selectedProject, setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
-  const {active,setActive}=useTimeFilterValue()
-  console.log(projects)
+  const { active, setActive } = useTimeFilterValue();
+  console.log(projects);
 
-   return (
+  return (
     projects &&
     projects.map((project) => (
       <li
@@ -18,9 +22,9 @@ const Projects = ({ activeValue = null }) => {
         data-testid="project-action-parent"
         data-doc-id={project.docId}
         className={
-          active === project.projectId
-            ? 'active sidebar__project'
-            : 'sidebar__project'
+          activeEl === project.projectId
+            ? "active sidebar__project"
+            : "sidebar__project"
         }
       >
         <div
@@ -31,15 +35,15 @@ const Projects = ({ activeValue = null }) => {
           onClick={() => {
             setActiveEl(project.projectId);
             setSelectedProject(project);
-            setActive(null)
-            console.log(project.name)
+            setActive(null);
+            console.log(project.name);
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               setActiveEl(project.projectId);
               setSelectedProject(project);
-              setActive(null)
-              console.log(project.name)
+              setActive(null);
+              console.log(project.name);
             }
           }}
         >
@@ -50,5 +54,4 @@ const Projects = ({ activeValue = null }) => {
   );
 };
 
-
-export default Projects
+export default Projects;
